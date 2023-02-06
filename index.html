@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <style>
+            input, button { padding: 10px; }
+        </style>
+    </head>
+    <body>
+        <input type="text" id="mensagem" />
+        <button onclick="enviarMensagem()">Enviar</button>
+        <script>
+            // Cria um novo WebSocket
+            var socket  = new WebSocket('ws://localhost:8080');
+
+            // Pega o elemento da Div HTML
+            var mensagem = document.getElementById('mensagem');
+
+            function enviarMensagem() {
+                socket.send( mensagem.value );
+            }
+
+            socket.onmessage = function(e) {
+                alert( e.data );
+            }
+        </script>
+    </body>
+</html>
